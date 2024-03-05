@@ -13,7 +13,7 @@ import peopleImg from "/public/people.png";
 
 export default function Home() {
   const [query, setQuery] = useState("");
-  const [users, setUsers] = useState<any>();
+  const [users, setUsers] = useState<IUser[]>();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 
@@ -24,7 +24,7 @@ export default function Home() {
       setLoading(true);
       try {
         const users = await fetchUsers(debouncedSearch);
-        setUsers(users?.items);
+        if (users) setUsers(users?.items);
       } catch (error: any) {
         if (error.message) setError(error.message);
       }
