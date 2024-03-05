@@ -8,6 +8,8 @@ import Spinner from "@/components/Spinner";
 import { User } from "@/utils/types";
 import { useDebounce } from "@/hooks/useDebounce";
 import FeedbackMessage from "@/components/FeedbackMessage";
+import Image from "next/image";
+import peopleImg from "/public/people.png";
 
 export default function Home() {
   const [query, setQuery] = useState("");
@@ -24,7 +26,7 @@ export default function Home() {
         const users = await fetchUsers(debouncedSearch);
         setUsers(users?.items);
       } catch (error: any) {
-        setError(error.message);
+        if (error.message) setError(error.message);
       }
       setLoading(false);
     };
@@ -37,18 +39,32 @@ export default function Home() {
 
   return (
     <div className={classes.main}>
-      <div>
+      <div className={classes.search}>
         <Input
           label="Search user"
           type="text"
           onChange={(e) => {
             setQuery(e.target.value);
+            setError(null);
           }}
         />
       </div>
 
       {loading && <Spinner />}
       {error && <FeedbackMessage message={String(error)} variant="error" />}
+
+      {users?.length === 0 && !loading && !error && (
+        <div className={classes.img}>
+          <h3>Github users...</h3>
+          <Image
+            src={peopleImg}
+            width={400}
+            height={300}
+            alt={"search placeholder"}
+            layout="responsive"
+          />
+        </div>
+      )}
       <div className={classes.content}>
         {users?.map((user: User) => (
           <Card
