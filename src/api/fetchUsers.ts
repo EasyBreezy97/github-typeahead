@@ -1,8 +1,8 @@
-import { UserSearchResponse } from "@/utils/types";
+import { IUserSearchResponse } from "@/utils/types";
 
 export async function fetchUsers(
   query: string,
-): Promise<UserSearchResponse | null> {
+): Promise<IUserSearchResponse | null> {
   try {
     if (!query) {
       return null;
@@ -19,6 +19,6 @@ export async function fetchUsers(
     return jsonData;
   } catch (error) {
     console.error("Error fetching data:", error);
-    throw error;
+    throw new Error("Network response was not ok");
   }
 }
