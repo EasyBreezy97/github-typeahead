@@ -5,7 +5,7 @@ import classes from "./page.module.css";
 import { fetchUsers } from "@/api/fetchUsers";
 import Card from "@/components/Card";
 import Spinner from "@/components/Spinner";
-import { User } from "@/utils/types";
+import { IUser } from "@/utils/types";
 import { useDebounce } from "@/hooks/useDebounce";
 import FeedbackMessage from "@/components/FeedbackMessage";
 import Image from "next/image";
@@ -66,7 +66,7 @@ export default function Home() {
         </div>
       )}
       <div className={classes.content}>
-        {users?.map((user: User) => (
+        {users?.map((user: IUser) => (
           <Card
             key={user.id}
             onClick={() => window.open(user.html_url, "_blank")}
