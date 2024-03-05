@@ -1,0 +1,23 @@
+.main {
+  min-height: 100vh;
+  width: 95%;
+  margin: auto;
+}
+.content {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  max-height: 85vh;
+  overflow-y: scroll;
+}
+
+.content::-webkit-scrollbar {
+  width: 6px;
+}
+
+@media only screen and (max-width: 768px) {
+  .content {
+    grid-template-columns: auto;
+  }
+}
