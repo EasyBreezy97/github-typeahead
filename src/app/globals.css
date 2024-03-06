@@ -30,12 +30,6 @@ h6 {
   font-weight: normal;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-}
-
 .layout {
   max-width: 1600px;
   margin: auto;

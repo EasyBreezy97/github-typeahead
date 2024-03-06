@@ -44,6 +44,7 @@ export default function Home() {
           onChange={(e) => {
             setQuery(e.target.value);
           }}
+          placeholder="Search user..."
         />
       </div>
 
