@@ -1,4 +1,4 @@
-export interface User {
+export interface IUser {
   login: string;
   id: number;
   node_id: string;
@@ -20,8 +20,8 @@ export interface User {
   score: number;
 }
 
-export interface UserSearchResponse {
+export interface IUserSearchResponse {
   total_count: number;
   incomplete_results: boolean;
-  items: User[];
+  items: IUser[];
 }

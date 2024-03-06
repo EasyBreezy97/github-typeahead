@@ -9,5 +9,5 @@ export default function FeedbackMessage({
   variant = "info",
   message,
 }: IFeedbackMessage) {
-  return <p className={classes[variant]}>{message}</p>;
+  return <p className={`${classes.msg} ${classes[variant]}`}>{message}</p>;
 }

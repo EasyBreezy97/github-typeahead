@@ -8,16 +8,41 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
-  max-height: 85vh;
+  max-height: 80vh;
   overflow-y: scroll;
 }
+.search {
+  margin-bottom: 1rem;
+}
+.img {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  width: 40%;
+}
 
+.img h3 {
+  margin: 1rem 0;
+  font-size: 1.8rem;
+}
 .content::-webkit-scrollbar {
   width: 6px;
+}
+
+@media only screen and (max-width: 992px) {
+  .content {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media only screen and (max-width: 768px) {
   .content {
     grid-template-columns: auto;
+  }
+  .img {
+    width: 90%;
   }
 }
