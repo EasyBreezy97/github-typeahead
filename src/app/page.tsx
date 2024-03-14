@@ -1,41 +1,16 @@
 "use client";
-import { useEffect, useState } from "react";
 import Input from "@/components/Input";
 import classes from "./page.module.css";
-import { fetchUsers } from "@/api/fetchUsers";
 import Card from "@/components/Card";
 import Spinner from "@/components/Spinner";
 import { IUser } from "@/utils/types";
-import { useDebounce } from "@/hooks/useDebounce";
 import FeedbackMessage from "@/components/FeedbackMessage";
 import Image from "next/image";
 import peopleImg from "/public/people.png";
+import useFetchUsers from "@/hooks/useFetchUsers";
 
 export default function Home() {
-  const [query, setQuery] = useState("");
-  const [users, setUsers] = useState<IUser[]>();
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<Error | null>(null);
-
-  const debouncedSearch = useDebounce(query);
-
-  useEffect(() => {
-    const loadUsers = async () => {
-      setLoading(true);
-      try {
-        const users = await fetchUsers(debouncedSearch);
-        if (users) setUsers(users?.items);
-      } catch (error: any) {
-        if (error.message) setError(error.message);
-      }
-      setLoading(false);
-    };
-    if (debouncedSearch) {
-      loadUsers();
-    } else {
-      setUsers([]);
-    }
-  }, [debouncedSearch]);
+  const { setQuery, error, users, setError, loading } = useFetchUsers();
 
   return (
     <div className={classes.main}>
