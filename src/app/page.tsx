@@ -7,10 +7,10 @@ import { IUser } from "@/utils/types";
 import FeedbackMessage from "@/components/FeedbackMessage";
 import Image from "next/image";
 import peopleImg from "/public/people.png";
-import useFetchUsers from "@/hooks/useFetchUsers";
+import useGetFetchUsers from "@/api/hooks/useGetFetchUsers";
 
 export default function Home() {
-  const { setQuery, error, users, setError, loading } = useFetchUsers();
+  const { users, error, loading, setQuery } = useGetFetchUsers();
 
   return (
     <div className={classes.main}>
@@ -20,7 +20,6 @@ export default function Home() {
           type="text"
           onChange={(e) => {
             setQuery(e.target.value);
-            setError(null);
           }}
           placeholder="Search user..."
         />
